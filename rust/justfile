@@ -1,0 +1,13 @@
+cpp_build_dir := env("PWD") / "cpp/build/"
+
+default:
+  just --list
+
+build:
+  cargo build
+
+run:
+  #!/bin/bash
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{{cpp_build_dir}}
+  echo $LD_LIBRARY_PATH
+  cargo run -- --input /home/georgii/Pictures/inference_tinkering.jpg --output /home/georgii/Pictures/rust-saved-pic.png

@@ -1,0 +1,14 @@
+default:
+  just --list
+
+build:
+  #!/bin/bash
+  mkdir -p build
+  cd build
+  cmake -GNinja ..
+  ninja
+
+clean:
+  rm -rf build
+
+rebuild: clean build
