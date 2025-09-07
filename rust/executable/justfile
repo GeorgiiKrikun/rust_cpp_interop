@@ -1,4 +1,4 @@
-cpp_build_dir := env("PWD") / "cpp/build/"
+cpp_build_dir := env("CPP_BUILD_DIR", justfile_directory() / "cpp/build/")
 
 default:
   just --list

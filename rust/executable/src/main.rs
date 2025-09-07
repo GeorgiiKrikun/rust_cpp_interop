@@ -29,6 +29,7 @@ fn check_input(p: &Path) {
     if !p.is_file() {
         panic!("Input path is not a file: {:?}", p);
     }
+    
     if !p.exists() {
         panic!("Input file does not exist: {:?}", p);
     }

@@ -1,3 +1,5 @@
+rust_lib_path := env("RUST_BUILD_DIR")
+
 default:
   just --list
 
@@ -5,10 +7,15 @@ build:
   #!/bin/bash
   mkdir -p build
   cd build
-  cmake -GNinja ..
-  ninja
+  cmake -GNinja -DRUST_BUILD_DIR={{rust_lib_path}} ..
+  ninja -v
 
 clean:
   rm -rf build
 
 rebuild: clean build
+
+run: 
+  #!/bin/bash
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{{rust_lib_path}}
+  ./build/cpp_executable /home/georgii/Pictures/inference_tinkering.jpg /home/georgii/Pictures/rust-saved-pic.png
