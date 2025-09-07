@@ -53,3 +53,16 @@ int32_t save_image_from_rust(const uint8_t* data,
         return -1; // Failure
     }
 }
+
+void print_user_from_rust(const UserProfile* user) {
+   if (!user) {
+       std::cout << "[C++] Received a null pointer!" << std::endl;
+       return;
+   }
+   std::cout << "[C++] --- User Profile ---" << std::endl;
+   std::cout << "[C++] ID: " << user->user_id << std::endl;
+   std::cout << "[C++] Score: " << user->score << std::endl;
+   std::cout << "[C++] Active: " << (user->is_active ? "yes" : "no") << std::endl;
+   std::cout << "[C++] Name: " << (user->name ? user->name : "null") << std::endl;
+   std::cout << "[C++] --------------------" << std::endl;
+}

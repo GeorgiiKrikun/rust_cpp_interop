@@ -5,6 +5,11 @@ use std::path::Path;
 use clap::Parser;
 use std::error::Error;
 
+#[path="generated/bindings.rs"]
+mod bindings;
+
+use bindings::UserProfile;
+
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
@@ -23,6 +28,7 @@ unsafe extern "C" {
         channels: c_int,
         output_path: *const c_char,
     ) -> c_int;
+    unsafe fn print_user_from_rust(user: *const UserProfile);
 }
 
 fn check_input(p: &Path) {
@@ -77,6 +83,18 @@ fn main() -> Result<(), Box<dyn Error> > {
         println!("[Rust] Call to C++ succeeded for");
     } else {
         println!("[Rust] Call to C++ failed for");
+    }
+
+    println!("Try to print user profile from C++:");
+    let up = UserProfile {
+        user_id: 42,
+        score: 99.5,
+        is_active: true,
+        name: CString::new(in_fname)?.into_raw(), // Convert Rust string to C string
+    };
+
+    unsafe {
+        print_user_from_rust(&up);
     }
     // println!("---");
 

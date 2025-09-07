@@ -6,3 +6,6 @@ edition = "2024"
 [dependencies]
 clap = {version = "4.5.47", features = ["derive"]}
 image = "0.25"
+
+[build-dependencies]
+bindgen = "0.72.1"
