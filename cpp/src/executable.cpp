@@ -37,24 +37,3 @@ int main(int argc, char** argv) {
 
 }
 
-struct s {
-    int a;
-    bool b;
-};
-
-
-
-// int multiply(int a, int b) {
-//     return a * b;
-// }
-//
-// PyObject call_python_func(PyObject a1, PyObject a2) {
-//     if (a1.convertible_to<int>() && a2.convertible_to<int>()) {
-//         int a1_int = a1.to_int();
-//         int a2_int = a2.to_int();
-//         int result = multiply(a1_int, a2_int);
-//         return PyObject::from_int(result);
-//     } else {
-//         throw std::exception("Both arguments must be convertible to int.");
-//     }
-// }
