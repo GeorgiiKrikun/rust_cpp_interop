@@ -41,9 +41,6 @@ fn check_input(p: &Path) {
     }
 }
 
-    
-
-// The main function is IDENTICAL to the previous example.
 fn main() -> Result<(), Box<dyn Error> > {
     let args = Args::parse();
     let input_img_pth = Path::new(&args.input);
@@ -75,7 +72,7 @@ fn main() -> Result<(), Box<dyn Error> > {
             raw_data.as_ptr(),
             width as c_int,
             height as c_int,
-            3, // RGB8 has 3 channels
+            3,
             c_out_path?.as_ptr(),
         )
     };
